@@ -11,7 +11,7 @@ URL Bar Plus 是一个简单的用户脚本，旨在增强您的网页浏览体�
 ## 安装
 
 1. 确保您的浏览器已安装用户脚本管理器（如 Tampermonkey）
-2. [点击这里](link-to-your-script.user.js)安装脚本
+2. [点击这里](https://greasyfork.org/zh-CN/scripts/508990-url-bar-plus-%E4%BC%98%E5%8C%96%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E5%9D%80%E8%BE%93%E5%85%A5%E6%A1%86/codes)安装脚本
 
 ## 使用
 
@@ -43,7 +43,7 @@ URL Bar Plus is a simple userscript designed to enhance your web browsing experi
 ## Installation
 
 1. Ensure you have a userscript manager (like Tampermonkey) installed in your browser
-2. [Click here](link-to-your-script.user.js) to install the script
+2. [Click here](https://greasyfork.org/zh-CN/scripts/508990-url-bar-plus-%E4%BC%98%E5%8C%96%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E5%9D%80%E8%BE%93%E5%85%A5%E6%A1%86/code) to install the script
 
 ## Usage
 
