@@ -1,16 +1,17 @@
 // ==UserScript==
-// @name         优化的自定义网址输入框
+// @name         url-bar-plus 优化的自定义网址输入框
 // @namespace    http://tampermonkey.net/
-// @version      3.0
+// @version      4.0
 // @description  在网页底部添加一个网址输入框，显示当前网址并允许修改，支持多行显示并自适应高度，协议、主机地址与路径用不同颜色显示，使用快捷键Ctrl+K隐藏与显示，使用cookie记住上次的状态，并增加了更多用户体验优化
-// @author       Your Name
+// @author       cat
 // @match        *://*/*
 // @grant        none
+// @license MIT
 // ==/UserScript==
-
+ 
 (function() {
     'use strict';
-
+ 
     // 样式定义
     const styles = `
         #custom-url-input {
@@ -50,28 +51,28 @@
             display: none;
         }
     `;
-
+ 
     // 创建样式元素
     const styleElement = document.createElement('style');
     styleElement.textContent = styles;
     document.head.appendChild(styleElement);
-
+ 
     // 创建输入框
     const urlInput = document.createElement('div');
     urlInput.id = 'custom-url-input';
     urlInput.contentEditable = true;
     urlInput.innerHTML = colorizeUrl(window.location.href);
     document.body.appendChild(urlInput);
-
+ 
     // 创建提示框
     const tooltip = document.createElement('div');
     tooltip.id = 'custom-url-input-tooltip';
     tooltip.textContent = 'Ctrl+K: 显示/隐藏 | Enter: 跳转 | Shift+Enter: 换行';
     document.body.appendChild(tooltip);
-
+ 
     // 初始化显示状态
     urlInput.style.display = getCookie('urlInputDisplay') || 'block';
-
+ 
     // 事件监听器
     urlInput.addEventListener('keydown', handleKeyDown);
     urlInput.addEventListener('input', handleInput);
@@ -79,7 +80,7 @@
     urlInput.addEventListener('blur', () => tooltip.style.display = 'none');
     window.addEventListener('popstate', updateUrl);
     document.addEventListener('keydown', handleGlobalKeyDown);
-
+ 
     // 颜色化网址函数
     function colorizeUrl(url) {
         const parts = url.match(/^([^:]+:)(\/\/[^\/]+)(.*)/);
@@ -89,7 +90,7 @@
                `<span style="color: #28A745;">${host}</span>` +
                `<span style="color: #DC3545;">${path}</span>`;
     }
-
+ 
     // 处理键盘事件
     function handleKeyDown(event) {
         if (event.key === 'Enter' && !event.shiftKey) {
@@ -100,7 +101,7 @@
             }
         }
     }
-
+ 
     // 处理输入事件
     function handleInput() {
         adjustHeight(urlInput);
@@ -115,13 +116,13 @@
         sel.removeAllRanges();
         sel.addRange(range);
     }
-
+ 
     // 更新URL
     function updateUrl() {
         urlInput.innerHTML = colorizeUrl(window.location.href);
         adjustHeight(urlInput);
     }
-
+ 
     // 处理全局键盘事件
     function handleGlobalKeyDown(event) {
         if (event.ctrlKey && event.key === 'k') {
@@ -129,7 +130,7 @@
             toggleUrlInput();
         }
     }
-
+ 
     // 切换输入框显示状态
     function toggleUrlInput() {
         urlInput.style.display = urlInput.style.display === 'none' ? 'block' : 'none';
@@ -138,13 +139,13 @@
             urlInput.focus();
         }
     }
-
+ 
     // 调整高度
     function adjustHeight(element) {
         element.style.height = 'auto';
         element.style.height = Math.min(element.scrollHeight, 150) + 'px';
     }
-
+ 
     // 设置 cookie
     function setCookie(name, value, days = 365) {
         const date = new Date();
@@ -152,7 +153,7 @@
         const expires = `expires=${date.toUTCString()}`;
         document.cookie = `${name}=${value};${expires};path=/`;
     }
-
+ 
     // 获取 cookie
     function getCookie(name) {
         const cookieArr = document.cookie.split(';');
@@ -164,7 +165,7 @@
         }
         return null;
     }
-
+ 
     // 初始化
     adjustHeight(urlInput);
 })();
